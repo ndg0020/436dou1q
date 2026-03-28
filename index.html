@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/436dou1q/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Google Sign-In client ID -->
+  <meta name="google-signin-client_id" content="340474251779-mjgamdsrqpf5jm675f9iec4rqcjgeqip.apps.googleusercontent.com">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="task_app">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- BarcodeDetector polyfill for browsers without native support -->
+  <script type="module">
+    import { BarcodeDetector } from 'https://fastly.jsdelivr.net/npm/barcode-detector@2/dist/es/index.min.js';
+    if (!('BarcodeDetector' in window)) {
+      window.BarcodeDetector = BarcodeDetector;
+    }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>task_app</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* iOS Safari keyboard fix: ensure Flutter's hidden text inputs are
+       large enough for iOS to consider them "real" input targets. iOS refuses
+       to show the keyboard for inputs with zero dimensions or opacity:0. */
+    flt-text-editing-host {
+      position: absolute !important;
+      pointer-events: none;
+    }
+    flt-text-editing-host input,
+    flt-text-editing-host textarea {
+      -webkit-user-select: text !important;
+      user-select: text !important;
+      pointer-events: auto !important;
+      font-size: 16px !important; /* prevents iOS zoom-on-focus */
+    }
+  </style>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+
+  <script>
+    // iOS Safari keyboard fix: ensure taps on the Flutter canvas reach the
+    // hidden text-editing <input> within the same user-gesture frame.
+    (function() {
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (!isIOS) return;
+
+      document.addEventListener('touchend', function() {
+        // After Flutter processes the tap and focuses its hidden input,
+        // re-dispatch focus in the same gesture chain so iOS recognises it.
+        requestAnimationFrame(function() {
+          var host = document.querySelector('flt-text-editing-host');
+          if (!host) return;
+          var input = host.querySelector('input, textarea');
+          if (input && document.activeElement !== input) {
+            input.focus({ preventScroll: true });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
