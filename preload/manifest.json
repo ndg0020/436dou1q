@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-04-13T06:41:38.513295+00:00",
+  "files": [
+    "db.json",
+    "ean.json",
+    "fornitori.json",
+    "metriche_SA.json",
+    "metriche_SF.json",
+    "metriche_VM.json",
+    "users.json",
+    "vendite_SA.json",
+    "vendite_SF.json",
+    "vendite_VM.json"
+  ]
+}
